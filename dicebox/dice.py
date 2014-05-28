@@ -3,11 +3,12 @@ import random
 
 class Die(object):
 
-    def __init__(self, sides):
-        self.sides = sides
+    def __init__(self, count):
+        super(Die, self).__init__()
+        self.count = count
 
     def each(self):
-        return random.randint(1, self.sides)
+        return random.randint(1, self.count)
 
     def __mul__(self, count):
         return Pool(self, count)
@@ -28,8 +29,8 @@ class Die(object):
 class Pool(Die):
 
     def __init__(self, item, count):
+        super(Pool, self).__init__(count)
         self.item = item
-        self.count = count
 
     def each(self):
         return [self.item.each() for i in range(self.count)]
