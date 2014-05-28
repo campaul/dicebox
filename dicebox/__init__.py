@@ -1,4 +1,4 @@
-from dice.dice import Die, Pool
+from dicebox.dice import Die
 
 def d(sides):
     return Die(sides)
