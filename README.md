@@ -2,6 +2,8 @@
 
 `DiceBox` is a Python library for rolling dice.
 
+The project started as a thought experiment. Could I create an expressive domain-specific language for describing dice rolls that was also valid Python? After some careful thought and liberal application of operator overloading I ended up with what you see here.
+
 ## Usage
 
 A die is created using the `d` function and then rolled whenever it is called.
