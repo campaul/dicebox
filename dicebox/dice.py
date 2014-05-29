@@ -42,7 +42,11 @@ class Pool(Die):
         return Worst(self, count)
 
 
-class Add(Pool):
+class Add(Die):
+
+    def __init__(self, item, count):
+        super(Add, self).__init__(count)
+        self.item = item
 
     def each(self):
         return self.item.each() + [self.count]
