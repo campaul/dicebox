@@ -11,42 +11,47 @@ class Die(object):
         return random.randint(1, self.count)
 
     def __mul__(self, count):
-        return Pool(self, count)
+        return Pool(self, int(count))
 
     def __rmul__(self, count):
         return self.__mul__(count)
 
     def __add__(self, count):
-        return Add(self, count)
+        return Add(self, int(count))
 
     def __sub__(self, count):
-        return Add(self, -count)
+        return Add(self, -int(count))
 
     def __call__(self):
         return self.each()
 
+    def __int__(self):
+        return self.each()
 
-class Pool(Die):
+
+class Modifier(Die):
 
     def __init__(self, item, count):
-        super(Pool, self).__init__(count)
+        super(Modifier, self).__init__(count)
         self.item = item
+
+    def __int__(self):
+        return sum([int(item) for item in self.each()])
+
+
+class Pool(Modifier):
 
     def each(self):
         return [self.item.each() for i in range(self.count)]
 
     def __rshift__(self, count):
-        return Best(self, count)
+        return Best(self, int(count))
 
     def __lshift__(self, count):
-        return Worst(self, count)
+        return Worst(self, int(count))
 
 
-class Add(Die):
-
-    def __init__(self, item, count):
-        super(Add, self).__init__(count)
-        self.item = item
+class Add(Modifier):
 
     def each(self):
         return self.item.each() + [self.count]
