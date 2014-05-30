@@ -66,7 +66,7 @@ from dicebox import bias
 def xkcd(start, end):
     return 4
 
-with bias(d, xkcd):
+with d.bias(xkcd):
     # Always prints 4
     print(d(20)())
 ```

@@ -1,3 +1,5 @@
+from contextlib import contextmanager
+
 from dicebox import rng
 
 
@@ -8,6 +10,12 @@ class DiceFactory(object):
 
     def __call__(self, count):
         return Die(count, self.rng)
+
+    @contextmanager
+    def bias(self, rng):
+        self.rng, rng = rng, self.rng
+        yield
+        self.rng = rng
 
 
 class Die(object):
