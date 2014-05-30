@@ -1,10 +1,10 @@
-import random
+from dicebox import random
 
 
 class DiceFactory(object):
 
     def __init__(self):
-        self.rng = random.randint
+        self.rng = random.uniform
 
     def __call__(self, count):
         return Die(count, self.rng)
