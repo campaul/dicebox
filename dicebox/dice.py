@@ -1,14 +1,24 @@
 import random
 
 
+class DiceFactory(object):
+
+    def __init__(self):
+        self.rng = random.randint
+
+    def __call__(self, count):
+        return Die(count, self.rng)
+
+
 class Die(object):
 
-    def __init__(self, count):
+    def __init__(self, count, rng):
         super(Die, self).__init__()
         self.count = count
+        self.rng = rng
 
     def each(self):
-        return random.randint(1, self.count)
+        return self.rng(1, self.count)
 
     def __mul__(self, count):
         return Pool(self, int(count))

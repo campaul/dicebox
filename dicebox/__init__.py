@@ -1,4 +1,10 @@
-from dicebox.dice import Die
+from contextlib import contextmanager
+from dicebox.dice import Generator
 
-def d(sides):
-    return Die(sides)
+d = DiceFactory()
+
+@contextmanager
+def bias(d, rng):
+    rng, d.rng = d.rng, rng
+    yield
+    d.rng = rng
