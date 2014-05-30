@@ -57,3 +57,16 @@ Calling `int` on the result of an operation will cause its result to be summed. 
 >>> (d(10) * d(5))()
 [1, 10, 6, 9]
 ```
+
+The random number generator can be customized using the `bias` context manager and any function that has the same signature as `random.randint`.
+
+```python
+from dicebox import bias
+
+def xkcd(start, end):
+    return 4
+
+with bias(d, xkcd):
+    # Always prints 4
+    print(d(20)())
+```
