@@ -12,7 +12,7 @@ class DiceFactory(object):
 
 class Die(object):
 
-    def __init__(self, count, rng):
+    def __init__(self, count, rng=random.uniform):
         super(Die, self).__init__()
         self.count = count
         self.rng = rng
@@ -64,7 +64,12 @@ class Pool(Modifier):
 class Add(Modifier):
 
     def each(self):
-        return self.item.each() + [self.count]
+        base = self.item.each()
+
+        if type(base) == int:
+            base = [base]
+
+        return base + [self.count]
 
 
 class Sort(Pool):
