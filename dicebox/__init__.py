@@ -1,5 +1,5 @@
 from contextlib import contextmanager
-from dicebox.dice import Generator
+from dicebox.dice import DiceFactory
 
 d = DiceFactory()
 
