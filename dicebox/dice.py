@@ -57,11 +57,11 @@ class Modifier(Die):
     def __int__(self):
         return sum([int(item) for item in self.each()])
 
-
-class Pool(Modifier):
-
     def each(self):
         return [self.item.each() for i in range(self.count)]
+
+
+class Pool(Modifier):
 
     def __rshift__(self, count):
         return Best(self, int(count))
