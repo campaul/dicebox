@@ -6,6 +6,7 @@ from dicebox import rng
 class DiceFactory(object):
 
     def __init__(self):
+        super(DiceFactory, self).__init__()
         self.rng = rng.uniform
 
     def __call__(self, count):

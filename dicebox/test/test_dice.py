@@ -1,7 +1,26 @@
 import mock
 import pytest
 
-from dicebox.dice import Die, Pool
+from dicebox.dice import Die, DiceFactory, Pool
+
+
+class TestDiceFactory(object):
+
+    @pytest.fixture
+    def sides(self):
+        return 20
+
+    def test_call(self, sides):
+        assert type(DiceFactory()(sides)) == Die
+
+    def test_bias(self, sides):
+        rng = mock.Mock()
+        factory = DiceFactory()
+
+        with factory.bias(rng):
+            factory(20)()
+
+        rng.assert_called_with(1, 20)
 
 
 class TestDie(object):
