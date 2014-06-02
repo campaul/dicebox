@@ -61,8 +61,6 @@ Calling `int` on the result of an operation will cause its result to be summed. 
 The random number generator can be customized using the `bias` context manager and any function that has the same signature as `random.randint`.
 
 ```python
-from dicebox import bias
-
 def xkcd(start, end):
     return 4
 
