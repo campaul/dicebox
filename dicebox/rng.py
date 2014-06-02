@@ -5,3 +5,12 @@ def uniform(start, end):
 
 def xkcd(start, end):
     return 4
+
+def logged(rng, log):
+
+    def logged_rng(start, end):
+        result = rng(start, end)
+        log.append(result)
+        return result
+
+    return logged_rng
